@@ -6,7 +6,7 @@ dataset = ps.read_csv("Churn_Modelling.csv")
 
 (dataset.drop_duplicates())
 
-
+print(a)
 X=dataset.iloc[:,3:-1].values
 Y=dataset.iloc[:,-1].values
 #print(X)
@@ -26,4 +26,26 @@ from sklearn.preprocessing import OneHotEncoder
 
 ct=ColumnTransformer(transformers=[("encoder",OneHotEncoder(),[1])],remainder="passthrough")
 X=np.array(ct.fit_transform(X))
-print(X)
+
+"""Scaling occurs for converting all values to -4.0 to +3.0"""
+
+from sklearn.preprocessing import StandardScaler
+
+sc=StandardScaler()
+
+X=sc.fit_transform(X)
+
+"""Spiltting data set and training set"""
+from sklearn.model_selection import train_test_split
+xtrain , xtest, ytrain,ytest= train_test_split(X,Y,test_size=0.2,random_state=21)
+
+print(xtrain)
+
+"""Building ANN Artificial Neural Network"""
+
+import tensor as tf
+
+t=tf.keras 
+
+
+
