@@ -1,11 +1,28 @@
-import tensorflow as tf
 
 
-lis = [1,2,3,4]
+op = "dcsf3dfrsd3df432asdfcg423"
 
-mm=tf.one_hot(lis,depth=4)
-ll = tf.config.list_logical_devices()
+digit=0
+maxDigit = 0
+num = dict()
+strElem =""
+newElem = ""
+for a in op:
+    if a.isdigit():
+        if maxDigit < (digit):
+            maxDigit = digit
+            newElem = strElem
+        if a in num:
+            num[a]+=1
+        else:
+            num[a]=1
+        strElem = ""
+        digit=0
 
-print(ll)
 
-print(tf.__version__)
+    else:
+        digit+=1
+        strElem+=a
+
+sorted(num.items(),key= lambda  x :x[1],reverse=True)
+print(list(num.keys())[0],"".join(sorted(newElem,reverse=False)))
